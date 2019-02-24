@@ -5,6 +5,10 @@
   "repository": "https://github.com/katene30/todo-list.git",
   "author": "Katene Jack Cotton <katenejack@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "dev": "nodemon server"
+  },
+
   "dependencies": {
     "express": "^4.16.4",
     "knex": "^0.16.3",
