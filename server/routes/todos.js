@@ -15,6 +15,17 @@ router.get('/', (req,res) => {
     })
 })
 
+router.post('/', (req,res) => {
+    const todo = req.body
+    db.createTodo(todo)
+    .then(([id]) => {
+        res.json({id})
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({error: 'Something went wrong'})
+    })
+})
 
 
 router.get('/priority/:priority', (req,res) => {
