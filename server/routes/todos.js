@@ -9,10 +9,12 @@ router.get('/', (req,res) => {
             priority: 3,
             category: "home",
             is_complete: false,
-            due_at: 27
+            due_at: 27022019
         }
     ])
 })
+
+
 
 router.get('/priority/:priority', (req,res) => {
     // priority eg. 5
