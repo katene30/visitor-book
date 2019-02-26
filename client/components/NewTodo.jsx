@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 
-import { addTodo } from "../actions";
+import { addTodo,showForm } from "../actions";
 
 class NewTodo extends Component {
     constructor(props) {
@@ -33,7 +33,7 @@ class NewTodo extends Component {
 
         this.props.dispatch(addTodo(todo))
         .then(({id}) => {
-            
+            this.props.dispatch(showForm(!this.props.showTodo))
         })
     }
 
@@ -66,5 +66,10 @@ class NewTodo extends Component {
   }
 }
 
- 
-export default connect()(NewTodo);
+function mapStateToProps(state){
+    return {
+        showTodo: state.showTodo
+    }
+  } 
+
+export default connect(mapStateToProps)(NewTodo);

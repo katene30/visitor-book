@@ -47,9 +47,11 @@ class Header extends Component {
           </form>
         </div>
       </nav>
-      <div className="row">
-        <button onClick={() => this.props.dispatch(showForm(!this.props.showTodo))}></button>
+      <br/>
+      <div className="row justify-content-center">
+        <button onClick={() => this.props.dispatch(showForm(!this.props.showTodo))} className="btn btn-primary">{this.props.showTodo ? 'Nevermind':'+ Add a todo'}</button>
       </div>
+      <br/>
   </React.Fragment>
     )
   }
