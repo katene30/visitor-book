@@ -6,7 +6,7 @@
   "author": "Katene Jack Cotton <katenejack@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon server"
+    "dev": "nodemon server --watch & webpack --watch"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",
@@ -19,9 +19,13 @@
     "node-sass": "^4.11.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
     "sass-loader": "^7.1.0",
     "sqlite3": "^4.0.6",
     "style-loader": "^0.23.1",
+    "superagent": "^4.1.0",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
   },
