@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
+import {HashRouter as Router, Route } from 'react-router-dom'
 
 import {getTodos} from '../actions' 
+
 import TodoList from './TodoList';
+import Header from './Header';
+import Completed from './Completed';
     
 class App extends Component {
 
@@ -14,8 +18,15 @@ class App extends Component {
     render() {
         return (
             <div className="container">
-                <h1>Welcome to todo list</h1>
-                <TodoList />
+                <Router>
+                    <React.Fragment>
+                    <h1>Welcome to todo list</h1>
+                    <Header />
+                    <Route exact path = '/' component={TodoList} />
+                    <Route path = '/completed' component={Completed} />
+                    </React.Fragment>
+                </Router>
+
             </div>
     )
   }

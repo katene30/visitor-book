@@ -1,19 +1,33 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-import {getTodos,toggleCompleted} from '../actions'
+import {toggleCompleted, getTodosByCompleted} from '../actions'
 
-class TodoList extends Component {
+class Completed extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            completed: true
+        }
+    }
+
+    componentDidMount(){
+        this.props.dispatch(getTodosByCompleted(this.state.completed))
+    }
 
     componentDidUpdate(prevProps) {
         if (this.props.todos !== prevProps.todos) {
-        this.props.dispatch(getTodos())          
+        this.props.dispatch(getTodosByCompleted(this.state.completed))          
         }
       }
 
   render() {
     return (
       <div>
+          <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary" onClick={() => this.setState({completed:false})}>Not Completed</button>
+                <button type="button" class="btn btn-secondary" onClick={() => this.setState({completed:true})}>Completed</button>
+            </div>
         <ul className="list-group">
             {this.props.todos.map(todo => {
                 return(
@@ -63,4 +77,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps)(TodoList)
+export default connect(mapStateToProps)(Completed)
