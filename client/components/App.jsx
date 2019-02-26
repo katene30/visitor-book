@@ -7,8 +7,14 @@ import {getTodos} from '../actions'
 import TodoList from './TodoList';
 import Header from './Header';
 import Completed from './Completed';
+import NewTodo from './newTodo';
     
 class App extends Component {
+    constructor(props){
+        super(props)
+        this.state={
+        }
+    }
 
 
     componentDidMount(){
@@ -22,6 +28,7 @@ class App extends Component {
                     <React.Fragment>
                     <h1>Welcome to todo list</h1>
                     <Header />
+                    {this.props.showTodo && <NewTodo />}
                     <Route exact path = '/' component={TodoList} />
                     <Route path = '/completed' component={Completed} />
                     </React.Fragment>
@@ -34,7 +41,8 @@ class App extends Component {
 
 function mapStateToProps(state){
     return {
-        todos: state.todos
+        todos: state.todos,
+        showTodo: state.showTodo
     }
 }
 export default connect(mapStateToProps)(App)

@@ -15,3 +15,10 @@ export function getTodosByCompleted(isCompleted){
     return request.get(`/api/v1/todos/complete/${isCompleted}`)
     .then(res => res.body)
 }
+
+export function addTodo(todo) {
+    return request
+      .post("./api/v1/todos")
+      .send(todo)
+      .then(res => res.body);
+  }

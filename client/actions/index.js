@@ -1,4 +1,4 @@
-import {getTodos as apiGetTodos,getTodosByCompleted as apiGetTodosByCompleted} from '../api/todos'
+import {getTodos as apiGetTodos,getTodosByCompleted as apiGetTodosByCompleted, addTodo as apiAddTodo} from '../api/todos'
 import {toggleCompleted as apiToggleCompleted} from '../api/todos'
 
 
@@ -30,5 +30,19 @@ export function getTodosByCompleted(isCompleted) {
       .then(todos => {
        dispatch(saveTodos(todos))
     })
+  }
+}
+
+export function addTodo(todo) {
+  return dispatch => {
+    return apiAddTodo(todo)
+  };
+}
+
+export const showForm = show => {
+  console.log(show)
+  return {
+    type: 'SHOW_FORM',
+    showTodo: show
   }
 }
