@@ -5,7 +5,8 @@ module.exports = {
     createTodo,
     getTodosByCategory,
     getTodosByCompleted,
-    getTodosByPriority
+    getTodosByPriority,
+    completeTodo
 }
 
 function getTodos(testDb){
@@ -36,4 +37,10 @@ function getTodosByCompleted(is_complete, testDb){
     const db = testDb || connection
 
     return db('todos').where('is_complete', is_complete).select()
+}
+
+function completeTodo(id,completed, testDb){
+    const db = testDb || connection
+
+    return db('todos').where('id',id).update('is_complete',completed)
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
 import {getTodos} from '../actions' 
+import TodoList from './TodoList';
     
 class App extends Component {
 
@@ -12,15 +13,9 @@ class App extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <h1>Welcome to todo list</h1>
-                <ul>
-                    {this.props.todos.map(todo => {
-                        return(
-                            <li>{todo.task}</li>
-                        )
-                    })}
-                </ul>
+                <TodoList />
             </div>
     )
   }

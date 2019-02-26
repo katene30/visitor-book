@@ -75,4 +75,24 @@ router.get('/complete/:is_complete', (req,res) => {
     })
 })
 
+router.post('/complete/:id/:is_complete', (req,res) => {
+    var id = req.params.id
+    var isComplete = null
+
+    
+    if (req.params.is_complete == 'true'){
+        isComplete = true
+    } else {
+        isComplete = false
+    }
+
+    db.completeTodo(id,isComplete)
+    .then((num) => {
+        res.json(num)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({error: 'Something went wrong'})
+    })
+})
 module.exports = router
