@@ -15,8 +15,8 @@ class Completed extends Component {
         this.props.dispatch(getTodosByCompleted(this.state.completed))
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.props.todos !== prevProps.todos) {
+    componentDidUpdate(prevProps,prevState) {
+        if (this.state.completed !== prevState.completed) {
         this.props.dispatch(getTodosByCompleted(this.state.completed))          
         }
       }
@@ -59,7 +59,7 @@ class Completed extends Component {
                                         {todo.task}
                                     </div>
                                 </div>
-                            <div className="col-sm"><input type="checkbox" checked={todo.is_complete ? 'checked' : ''} onClick={() => this.props.dispatch(toggleCompleted(todo.id,!todo.is_complete))}/></div>
+                            <div className="col-sm"><input type="checkbox" checked={todo.is_complete ? 'checked' : ''} onClick={() => this.props.dispatch(toggleCompleted(todo.id,!todo.is_complete,true))}/></div>
                         </div>
                     </li>
                 )

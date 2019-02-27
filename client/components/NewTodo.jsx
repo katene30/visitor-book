@@ -32,7 +32,7 @@ class NewTodo extends Component {
         }
 
         this.props.dispatch(addTodo(todo))
-        .then(({id}) => {
+        .then(() => {
             this.props.dispatch(showForm(!this.props.showTodo))
         })
     }

@@ -18,9 +18,16 @@ export function saveTodos(todos){
     }
 }
 
-export function toggleCompleted(id,isCompleted){
+export function toggleCompleted(id,isCompleted,completeComponent){
   return dispatch => {
     return apiToggleCompleted(id,isCompleted)
+    .then(() => {
+      if(completeComponent){
+        dispatch(getTodosByCompleted(!isCompleted))        
+      } else {
+        dispatch(getTodos())                
+      }
+    })
   }
 }
 
@@ -36,11 +43,13 @@ export function getTodosByCompleted(isCompleted) {
 export function addTodo(todo) {
   return dispatch => {
     return apiAddTodo(todo)
+    .then(() => {
+      dispatch(getTodos())
+    })
   };
 }
 
 export const showForm = show => {
-  console.log(show)
   return {
     type: 'SHOW_FORM',
     showTodo: show

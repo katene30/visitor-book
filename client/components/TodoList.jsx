@@ -5,11 +5,9 @@ import {getTodos,toggleCompleted} from '../actions'
 
 class TodoList extends Component {
 
-    componentDidUpdate(prevProps) {
-        if (this.props.todos !== prevProps.todos) {
-        this.props.dispatch(getTodos())          
-        }
-      }
+    componentDidMount(){
+        this.props.dispatch(getTodos())
+    }
 
   render() {
     return (

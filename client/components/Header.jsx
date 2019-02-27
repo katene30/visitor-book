@@ -8,7 +8,19 @@ import {showForm} from '../actions'
 class Header extends Component {
   constructor(props){
     super(props)
+
+    this.uniqueCategories = this.uniqueCategories.bind(this)
   }
+
+  uniqueCategories(){
+    var categories = []
+    this.props.todos.map(todo => categories.push(todo.category.toUppercase()))
+  }
+
+  componentDidMount(){
+    this.uniqueCategories()
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -28,9 +40,10 @@ class Header extends Component {
             </li>
             <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
+                Category
               </a>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                
                 <a className="dropdown-item" href="#">Action</a>
                 <a className="dropdown-item" href="#">Another action</a>
                 <div className="dropdown-divider"></div>
@@ -58,6 +71,7 @@ class Header extends Component {
 }
 function mapStateToProps(state){
   return {
+      todos: state.todos,
       showTodo: state.showTodo
   }
 }
