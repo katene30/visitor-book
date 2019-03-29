@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 
 import { addTodo,showForm } from "../actions";
+import {getUniqueCategories} from '../api/todos'
 
 class NewTodo extends Component {
     constructor(props) {
@@ -34,6 +35,9 @@ class NewTodo extends Component {
         this.props.dispatch(addTodo(todo))
         .then(() => {
             this.props.dispatch(showForm(!this.props.showTodo))
+        })
+        .then(() => {
+            this.props.dispatch(getUniqueCategories())
         })
     }
 

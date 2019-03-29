@@ -1,33 +1,27 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
 
-import {toggleCompleted, getTodosByCompleted} from '../actions'
+import {getTodosByCategory} from '../actions'
 
-class Completed extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            completed: true
-        }
-    }
+class Category extends Component {
 
     componentDidMount(){
-        this.props.dispatch(getTodosByCompleted(this.state.completed))
+        var category = this.props.match.params.category
+        this.props.dispatch(getTodosByCategory(category))
     }
 
-    componentDidUpdate(prevProps,prevState) {
-        if (this.state.completed !== prevState.completed) {
-        this.props.dispatch(getTodosByCompleted(this.state.completed))          
+    componentDidUpdate(prevProps){
+        if(prevProps.match.params.category != this.props.match.params.category){
+            var category = this.props.match.params.category
+            this.props.dispatch(getTodosByCategory(category))
         }
-      }
+    }
+
 
   render() {
     return (
       <div>
-          <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-secondary" onClick={() => this.setState({completed:false})}>Not Completed</button>
-                <button type="button" class="btn btn-secondary" onClick={() => this.setState({completed:true})}>Completed</button>
-            </div>
+        <div>
         <ul className="list-group">
             {this.props.todos.map(todo => {
                 return(
@@ -66,6 +60,7 @@ class Completed extends Component {
             })}
         </ul>
       </div>
+      </div>
     )
   }
 }
@@ -77,4 +72,4 @@ function mapStateToProps(state){
 }
 
 
-export default connect(mapStateToProps)(Completed)
+export default connect(mapStateToProps)(Category)

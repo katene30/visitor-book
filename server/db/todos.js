@@ -6,7 +6,8 @@ module.exports = {
     getTodosByCategory,
     getTodosByCompleted,
     getTodosByPriority,
-    completeTodo
+    completeTodo,
+    getUniqueCategories
 }
 
 function getTodos(testDb){
@@ -43,4 +44,16 @@ function completeTodo(id,completed, testDb){
     const db = testDb || connection
 
     return db('todos').where('id',id).update('is_complete',completed)
+}
+
+function getUniqueCategories(testDb){
+    const db = testDb || connection
+
+    return db('todos').select('category')
+    .then(categories => {
+        var categoriesArr = []
+        categories.map(({category}) => categoriesArr.push(category.toLowerCase()))
+        var unique = [...new Set(categoriesArr)];
+        return unique
+    })
 }

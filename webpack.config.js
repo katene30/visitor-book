@@ -29,7 +29,8 @@ const config = {
       '.js',
       '.jsx'
     ]
-  }
+  },
+  devtool: "source-map"
 }
 
 module.exports = config;

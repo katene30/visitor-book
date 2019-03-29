@@ -95,4 +95,16 @@ router.post('/complete/:id/:is_complete', (req,res) => {
         res.status(500).json({error: 'Something went wrong'})
     })
 })
+
+
+router.get('/category', (req,res) => {
+    db.getUniqueCategories()
+    .then(uniqueCategories => {
+        res.json(uniqueCategories)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({error: 'Something went wrong'})
+    })
+})
 module.exports = router

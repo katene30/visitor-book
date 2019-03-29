@@ -22,3 +22,13 @@ export function addTodo(todo) {
       .send(todo)
       .then(res => res.body);
   }
+
+export function getUniqueCategories(){
+    return request.get('/api/v1/todos/category')
+    .then(res => res.body)
+}
+
+export function getTodosByCategory(category){
+    return request.get(`/api/v1/todos/category/${category}`)
+    .then(res => res.body)
+}
