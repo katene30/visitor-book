@@ -30,15 +30,15 @@ class Category extends Component {
                             <div className="col-sm">
                                 {(() => {
                                     switch(todo.priority) {
-                                    case 5:
+                                    case 1:
                                         return <img src="/images/priority-1.png" alt="1" />;
-                                    case 4:
+                                    case 2:
                                         return <img src="/images/priority-2.png" alt="2" />;
                                     case 3:
                                         return <img src="/images/priority-3.png" alt="3" />;
-                                    case 2:
+                                    case 4:
                                         return <img src="/images/priority-4.png" alt="4" />;
-                                    case 1:
+                                    case 5:
                                         return <img src="/images/priority-5.png" alt="5" />;
                                     default:
                                         return <img src="/images/standard priority.png" alt="priority"/>;

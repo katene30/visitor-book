@@ -47,20 +47,20 @@ class NewTodo extends Component {
             <form onSubmit={this.onSubmit}>
             <div className="form-group">
                 <label>Task:</label>
-                <input name="task" type="text" className="form-control" placeholder="Enter your task" onChange={this.handleChange}/>
+                <input name="task" type="text" className="form-control" placeholder="Enter your task" onChange={this.handleChange} required/>
             </div>
             <div className="form-group">
                 <label>Category:</label>
-                <input name="category" type="text" className="form-control" placeholder="Category" onChange={this.handleChange}/>
+                <input name="category" type="text" className="form-control" placeholder="Category" onChange={this.handleChange} required/>
                 <small className="form-text text-muted">eg. Home, holiday, leisure...</small>
             </div>
             <div className="form-group">
                 <label>Due:</label>
-                <input type="date" name="due" className="form-control" placeholder="When is it due?" onChange={this.handleChange}/>
+                <input type="date" name="due" className="form-control" placeholder="When is it due?" onChange={this.handleChange} required/>
             </div>
             <div className="form-group">
                 <label>Priority:</label>
-                <input name="priority" type="range" className="custom-range" min="1" max="5" step="1" onChange={this.handleChange}/>
+                <input name="priority" type="range" className="custom-range" min="1" max="5" step="1" onChange={this.handleChange}  required/>
             </div>
             <button type="submit" className="btn btn-primary">Submit</button>
             </form>
