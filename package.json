@@ -2,7 +2,7 @@
   "name": "todo-list",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/katene30/todo-list.git",
+  "repository": "https://github.com/katene30/visitor-book",
   "author": "Katene Jack Cotton <katenejack@gmail.com>",
   "license": "MIT",
   "scripts": {
