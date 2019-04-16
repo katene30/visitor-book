@@ -28,7 +28,7 @@ class Logs extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.props.logs.map((log,i) => {
+            {this.props.logs.reverse().map((log,i) => {
               return(
                 <tr key={i}>
                   <th scope="row">{log.id}</th>
