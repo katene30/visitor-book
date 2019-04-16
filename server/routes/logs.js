@@ -27,9 +27,6 @@ router.post('/log', (req,res) => {
         time_in: today
     }
 
-    let newThing = DateTime.fromISO(today)
-    console.log(newThing)
-    
     db.createLog(log)
     .then(([id]) => {
         res.json({id})

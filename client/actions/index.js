@@ -1,6 +1,6 @@
-import {getTodos as apiGetTodos,getTodosByCompleted as apiGetTodosByCompleted, addTodo as apiAddTodo, getTodosByCategory as apiGetTodosByCategory, getUniqueCategories as apiGetUniqueCategories} from '../api/todos'
-import {toggleCompleted as apiToggleCompleted} from '../api/todos'
-
+// import {getTodos as apiGetTodos,getTodosByCompleted as apiGetTodosByCompleted, addTodo as apiAddTodo, getTodosByCategory as apiGetTodosByCategory, getUniqueCategories as apiGetUniqueCategories} from '../api/todos'
+// import {toggleCompleted as apiToggleCompleted} from '../api/todos'
+import {getLogs as apiGetLogs} from '../api/logs'
 
 export function getTodos() {
     return dispatch => {
@@ -20,6 +20,7 @@ export function saveTodos(todos){
         todos:todos,
     }
 }
+
 
 export function getUniqueCategories(){
   return dispatch => {

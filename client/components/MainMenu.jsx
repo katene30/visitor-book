@@ -17,7 +17,7 @@ export default class MainMenu extends Component {
             </div>
             <div className='row'>
                 <div className='col main-menu'>
-                    <Link to='/log' className="btn btn-primary">LOG</Link>
+                    <Link to='/logs' className="btn btn-primary">LOGS</Link>
                 </div>
             </div>
           </div>
