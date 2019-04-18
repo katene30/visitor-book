@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
-  mode: 'development',
   entry: './client/index.js',
   output: {
     path: path.resolve(__dirname, 'public'),
@@ -31,7 +30,10 @@ const config = {
       '.jsx'
     ]
   },
-  devtool: "source-map"
+  devtool: "source-map",
+
+  mode: 'development'
+
 }
 
 module.exports = config;

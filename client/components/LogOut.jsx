@@ -11,22 +11,32 @@ class Logs extends Component {
 
         this.state={
             pendingLogs : [],
-            
+            log: {},
+            confirm: false
         }
+        this.signOut = this.signOut.bind(this)
+        this.confirm = this.confirm.bind(this)
     }
 
     componentDidMount(){
         this.props.dispatch(getLogs())
         .then(() => {
-            let pendingLogs = this.props.logs.filter(log => {
+            const pendingLogs = this.props.logs.filter(log => {
                 return !log.time_out
             })
-            this.setState({pendingLogs})
+            this.setState({pendingLogs:pendingLogs.reverse()})
         })
     }
 
-    signOut(){
-        console.log('hit')
+    signOut(log){
+        if(this.state.log.id == log.id){
+            this.setState({confirm:false,log:{}})
+        }else{
+            this.setState({confirm:true,log})
+        }
+    }
+
+    confirm(){
     }
 
   render() {
@@ -45,9 +55,13 @@ class Logs extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.pendingLogs.reverse().map((log,i) => {
-              return(
-                <tr key={i} onClick={this.signOut}>
+            {this.state.pendingLogs.map((log,i) => {
+            let active = false
+            if(this.state.log.id == log.id){
+                active = true
+            }
+            return(
+                <tr key={i} className={active && 'table-success'} onClick={() => this.signOut(log)}>
                   <th scope="row">{log.id}</th>
                   <td>{log.time_in ? DateTime.fromISO(log.time_in).toLocaleString() : 'invalid'}</td>
                   <td>{log.service}</td>
@@ -60,7 +74,21 @@ class Logs extends Component {
             })}
           </tbody>
         </table>
-        <Link to='/' className="btn btn-primary">Home</Link>
+        <div className='row fixed-bottom bg-dark align-items-center'>
+            {this.state.confirm &&
+            <Fragment>
+                <div className='col text-light mx-5 px-5'>
+                    <h3>{this.state.log.name}</h3>
+                </div>
+                <div className='col text-left'>
+                    <button className='btn btn-light' onClick={() => this.confirm()}>Sign Out</button>
+                </div>
+            </Fragment>
+            }
+            <div className='col'>
+                <Link to='/' className="btn btn-primary btn-lg my-2 ml-2">Home</Link>
+            </div>
+        </div>
       </Fragment>
     )
   }
