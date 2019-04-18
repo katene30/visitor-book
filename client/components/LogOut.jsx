@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getLogs } from '../actions/logs';
+import { getLogs,signOut } from '../actions/logs';
 const {DateTime} = require('luxon')
 
 
@@ -14,11 +14,16 @@ class Logs extends Component {
             log: {},
             confirm: false
         }
+        this.getLogs = this.getLogs.bind(this)
         this.signOut = this.signOut.bind(this)
         this.confirm = this.confirm.bind(this)
     }
 
     componentDidMount(){
+        this.getLogs()
+    }
+
+    getLogs(){
         this.props.dispatch(getLogs())
         .then(() => {
             const pendingLogs = this.props.logs.filter(log => {
@@ -36,7 +41,11 @@ class Logs extends Component {
         }
     }
 
-    confirm(){
+    confirm(log){
+        this.props.dispatch(signOut(log))
+        .then(() => {
+            this.getLogs()
+        })
     }
 
   render() {
@@ -81,7 +90,7 @@ class Logs extends Component {
                     <h3>{this.state.log.name}</h3>
                 </div>
                 <div className='col text-left'>
-                    <button className='btn btn-light' onClick={() => this.confirm()}>Sign Out</button>
+                    <button className='btn btn-light' onClick={() => this.confirm(this.state.log)}>Sign Out</button>
                 </div>
             </Fragment>
             }
