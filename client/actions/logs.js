@@ -1,4 +1,4 @@
-import {getLogs as apiGetLogs, signOut as apiSignOut} from '../api/logs'
+import {getLogs as apiGetLogs, signOut as apiSignOut, addLog as apiAddLog} from '../api/logs'
 
 export function getLogs() {
     return dispatch => {
@@ -19,6 +19,15 @@ export function getLogs() {
   export function signOut(log){
     return dispatch => {
       return apiSignOut(log.id)
+      .then(() => {
+        dispatch(getLogs())
+      })
+    }
+  }
+
+  export function addLog(log){
+    return dispatch => {
+      return apiAddLog(log)
       .then(() => {
         dispatch(getLogs())
       })

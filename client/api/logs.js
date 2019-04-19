@@ -9,3 +9,9 @@ export function signOut(id){
     return request.post(`api/v1/log/${id}`)
     .then(res => res.body)
 }
+
+export function addLog(log){
+    return request.post('api/v1/log')
+    .send(log)
+    .then(res => res.body)
+}

@@ -1,3 +1,8 @@
 #main-menu{
     text-align: center;
 }
+
+.anyClass {
+    height:80vh;
+    overflow-y: auto;
+  }
