@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getLogs,signOut } from '../actions/logs';
+import Thead from './Thead'
 const {DateTime} = require('luxon')
 
 
@@ -51,18 +52,8 @@ class Logs extends Component {
   render() {
     return (
       <Fragment>
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Date</th>
-              <th scope="col">Service</th>
-              <th scope="col">Name</th>
-              <th scope="col">Reference</th>
-              <th scope="col">Time In</th>
-              <th scope="col">Time Out</th>
-            </tr>
-          </thead>
+        <table className="table table-hover table-fixed">
+          <Thead />
           <tbody>
             {this.state.pendingLogs.map((log,i) => {
             let active = false
@@ -70,8 +61,8 @@ class Logs extends Component {
                 active = true
             }
             return(
-                <tr key={i} className={active && 'table-success'} onClick={() => this.signOut(log)}>
-                  <th scope="row">{log.id}</th>
+                <tr key={i} className={active ? 'table-success' : undefined} onClick={() => this.signOut(log)}>
+                  <td>{log.id}</td>
                   <td>{log.time_in ? DateTime.fromISO(log.time_in).toLocaleString() : 'invalid'}</td>
                   <td>{log.service}</td>
                   <td>{log.name}</td>

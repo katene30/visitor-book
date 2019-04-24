@@ -6,3 +6,6 @@
     height:80vh;
     overflow-y: auto;
   }
+
+.table-fixed    { overflow-y: auto; height: 100px; }
+.table-fixed th { position: sticky; top: 0; }
