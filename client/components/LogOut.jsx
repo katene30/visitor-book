@@ -46,6 +46,7 @@ class Logs extends Component {
         this.props.dispatch(signOut(log))
         .then(() => {
             this.getLogs()
+            this.setState({confirm:false})
         })
     }
 

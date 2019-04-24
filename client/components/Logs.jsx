@@ -34,7 +34,9 @@ class Logs extends Component {
                   })}
                 </tbody>
           </table>
-        <Link to='/' className="btn btn-primary">Home</Link>
+        <div className="row fixed-bottom bg-dark align-items-center">
+          <Link to='/' className="btn btn-primary btn-lg btn-block">Home</Link>
+        </div>
       </Fragment>
     )
   }
