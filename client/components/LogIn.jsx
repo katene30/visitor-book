@@ -46,7 +46,15 @@ class Logs extends Component {
     return (
       <Fragment>
         {this.state.submit ? 
-        <h3>Thanks!</h3>
+        <Fragment>
+        {/* Add timeout here */}
+            <div className="jumbotron mt-5">
+                <img src="/images/logo.png" className="mx-auto d-block" alt="logo"/>
+                <h3>Thank you for visiting Te Hau Ora O Ngāpuhi</h3>
+                <hr className="my-4"/>
+                <p class="lead">Don't forget to sign out as you leave.</p>
+            </div>
+        </Fragment>
         :
         <form onSubmit={this.onSubmit}>
             <div className="form-group">
@@ -70,7 +78,9 @@ class Logs extends Component {
             <button type="submit" className="btn btn-primary">Submit</button>
         </form>
         }
-        <Link to='/' className="btn btn-primary">Home</Link>
+        <div className="row fixed-bottom bg-dark align-items-center">
+          <Link to='/' className="btn btn-primary btn-lg my-2 ml-4">Home</Link>
+        </div>
       </Fragment>
     )
   }
