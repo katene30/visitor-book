@@ -15,7 +15,7 @@ function getLogs(testDb){
 function createLog(log, testDb){
     const db = testDb || connection
 
-    return db('logs').insert(log)
+    return db('logs').insert(log,['id'])
 }
 
 function signOut(log, testDb){
