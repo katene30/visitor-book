@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import {connect} from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { getLogs,signOut } from '../actions/logs';
 import { addLog } from '../actions/logs';
 const {DateTime} = require('luxon')
@@ -14,7 +14,8 @@ class Logs extends Component {
             name: '',
             service: '',
             reference: '',
-            submit: false
+            submit: false,
+            navigate: false
         }
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -38,11 +39,17 @@ class Logs extends Component {
 
         this.props.dispatch(addLog(log))
         .then(() => {
-            this.setState({submit:true})
+            this.setState({submit:true});
+            setTimeout(() => {
+                this.setState({navigate:true})
+            }, 3000);
         })
     }
 
   render() {
+    if(this.state.navigate){
+          return <Redirect to="/" />
+        }
     return (
       <Fragment>
         {this.state.submit ? 
@@ -50,20 +57,20 @@ class Logs extends Component {
         {/* Add timeout here */}
             <div className="jumbotron mt-5">
                 <img src="/images/logo.png" className="mx-auto d-block" alt="logo"/>
-                <h3>Thank you for visiting Te Hau Ora O Ngāpuhi</h3>
+                <h3 className="text-center">Hei kona</h3>
                 <hr className="my-4"/>
-                <p class="lead">Don't forget to sign out as you leave.</p>
+                <p className="lead text-center">Please sign out before you leave...</p>
             </div>
         </Fragment>
         :
         <form onSubmit={this.onSubmit}>
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput">Name</label>
-                <input type="text" name="name" className="form-control" id="formGroupExampleInput" placeholder="Name" onChange={this.handleChange} required/>
+                <input type="text" name="name" className="form-control" id="formGroupExampleInput" onChange={this.handleChange} required/>
             </div>
             <div className="form-group">
                 <label htmlFor="formGroupExampleInput2">Service</label>
-                <input type="text" name="service" className="form-control" id="formGroupExampleInput2" placeholder="Service" onChange={this.handleChange} required/>
+                <input type="text" name="service" className="form-control" id="formGroupExampleInput2" onChange={this.handleChange} required/>
                 <small id="passwordHelpBlock" className="form-text text-muted">
                     E.g Family Start, Budgeting, Toki Rau...
                 </small>
