@@ -9,3 +9,7 @@
 
 .table-fixed    { overflow-y: auto; height: 100px; }
 .table-fixed th { position: sticky; top: 0; }
+
+.table {
+  margin-bottom: 5rem
+}
