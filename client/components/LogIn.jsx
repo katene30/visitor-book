@@ -42,7 +42,7 @@ class Logs extends Component {
             this.setState({submit:true});
             setTimeout(() => {
                 this.setState({navigate:true})
-            }, 3000);
+            }, 5000);
         })
     }
 
@@ -62,27 +62,29 @@ class Logs extends Component {
             </div>
         </Fragment>
         :
-        <form onSubmit={this.onSubmit}>
-            <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Name</label>
-                <input type="text" name="name" className="form-control" id="formGroupExampleInput" onChange={this.handleChange} required/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="formGroupExampleInput2">Service</label>
-                <input type="text" name="service" className="form-control" id="formGroupExampleInput2" onChange={this.handleChange} required/>
-                <small id="passwordHelpBlock" className="form-text text-muted">
-                    E.g Family Start, Budgeting, Toki Rau...
-                </small>
-            </div>
-            <div className="form-group">
-                <label htmlFor="formGroupExampleInput2">Reference</label>
-                <input type="text" name="reference" className="form-control" id="formGroupExampleInput2" placeholder="Who referred you?" onChange={this.handleChange} required/>
-                <small id="passwordHelpBlock" className="form-text text-muted">
-                    E.g Self, Government agencies, Iwi providers...
-                </small>
-            </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
+        <div className="d-flex align-content-center flex-wrap">
+            <form onSubmit={this.onSubmit}>
+                <div className="form-group">
+                    <label htmlFor="formGroupExampleInput">Name</label>
+                    <input type="text" name="name" className="form-control" id="formGroupExampleInput" onChange={this.handleChange} required/>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="formGroupExampleInput2">Service</label>
+                    <input type="text" name="service" className="form-control" id="formGroupExampleInput2" onChange={this.handleChange} required/>
+                    <small id="passwordHelpBlock" className="form-text text-muted">
+                        E.g Family Start, Budgeting, Toki Rau...
+                    </small>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="formGroupExampleInput2">Reference</label>
+                    <input type="text" name="reference" className="form-control" id="formGroupExampleInput2" placeholder="Who referred you?" onChange={this.handleChange} required/>
+                    <small id="passwordHelpBlock" className="form-text text-muted">
+                        E.g Self, Government agencies, Iwi providers...
+                    </small>
+                </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+            </form>
+        </div>
         }
         <div className="row fixed-bottom bg-dark align-items-center">
           <Link to='/' className="btn btn-primary btn-lg my-2 ml-4">Home</Link>
