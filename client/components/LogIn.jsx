@@ -54,7 +54,6 @@ class Logs extends Component {
       <Fragment>
         {this.state.submit ? 
         <Fragment>
-        {/* Add timeout here */}
             <div className="jumbotron mt-5">
                 <img src="/images/logo.png" className="mx-auto d-block" alt="logo"/>
                 <h3 className="text-center">Hei kona</h3>

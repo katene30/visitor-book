@@ -64,7 +64,7 @@ class Logs extends Component {
             return(
                 <tr key={i} className={active ? 'table-success' : undefined} onClick={() => this.signOut(log)}>
                   <td>{log.id}</td>
-                  <td>{log.time_in ? DateTime.fromISO(log.time_in).toLocaleString() : 'invalid'}</td>
+                  <td>{log.time_in ? DateTime.fromISO(log.time_in,{locale: "en-GB"}).toLocaleString() : 'invalid'}</td>
                   <td>{log.service}</td>
                   <td>{log.name}</td>
                   <td>{log.reference}</td>
