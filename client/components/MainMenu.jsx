@@ -18,8 +18,9 @@ export default class MainMenu extends Component {
                     <Link to='/out' className="btn btn-primary btn-lg p-3">Sign Out</Link>
                 </div>
             </div>
-                    <Link to='/logs' className="btn btn-link d-flex justify-content-end">Logs</Link>
-                
+            <div className="d-flex justify-content-end">
+              <Link to='/logs' className="btn btn-link">Logs</Link>
+            </div>
         </div>
 
       </Fragment>
