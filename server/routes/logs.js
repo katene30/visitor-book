@@ -1,10 +1,25 @@
 const express = require('express')
-const router = express.Router()
 const db = require('../db/logs')
+const verifyJwt = require('express-jwt')
 const {DateTime} = require('luxon')
+const router = express.Router()
 
 // GET /api/v1/logs returns all logs
-router.get('/logs', (req,res) => {
+
+// router.get('/logs', (req,res) => {
+//     db.getLogs()
+//     .then(logs => {
+//         res.json(logs)
+//     })
+//     .catch(err => {
+//         console.log(err)
+//         res.status(500).json({error: 'Something went wrong'})
+//     })
+// })
+
+router.get('/logs', verifyJwt({secret: process.env.JWT_SECRET}), logs)
+
+function logs (req,res){
     db.getLogs()
     .then(logs => {
         res.json(logs)
@@ -13,7 +28,7 @@ router.get('/logs', (req,res) => {
         console.log(err)
         res.status(500).json({error: 'Something went wrong'})
     })
-})
+}
 
 // POST /api/v1/log Adds log to db
 router.post('/log', (req,res) => {
