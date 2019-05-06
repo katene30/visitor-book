@@ -3,7 +3,8 @@ const {generateHash} = require('../auth/hash')
 
 
 module.exports = {
-  createUser
+  createUser,
+  getUser
 }
 
 function createUser ({username, password}, db = connection) {
@@ -11,4 +12,8 @@ function createUser ({username, password}, db = connection) {
   .then(hash => {
     return db('users').insert({username, hash})
   })
+}
+
+function getUser(id, db = connection){
+  return db('users').where('id',id).select()
 }
