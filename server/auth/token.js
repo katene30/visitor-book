@@ -4,12 +4,13 @@ const verifyJwt = require('express-jwt')
 const {comparePasswordToHash} = require('./hash')
 
 function issue (req, res) {
-  getUserByUsername(req.body.user_name)
+  getUserByUsername(req.body.username)
     .then(user => {
+
       if (!user) {
         res.status(403).json({message: 'User does not exist'})
       } else {
-        comparePasswordToHash(req.body.password, user.hash)
+        comparePasswordToHash(req.body.hash, user.hash)
         .then((match) => {
           if (!match) {
             res.status(400).json({message: 'Password is incorrect'})
@@ -30,8 +31,8 @@ function issue (req, res) {
 
 function createToken (user, secret) {
   const payload = {
-    user_id: user.user_id,
-    user_name: user.user_name
+    id: user.id,
+    username: user.username
   }
 
   const options = {
@@ -42,7 +43,7 @@ function createToken (user, secret) {
 }
 
 function decode (req, res, next) {
-  verifyJwt({ secret: process.env.JWT_SECRET, credentialsRequired: true })(req, res, next)
+  verifyJwt({ secret: process.env, credentialsRequired: true })(req, res, next)
 }
 
 module.exports = {

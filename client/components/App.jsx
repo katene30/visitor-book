@@ -5,6 +5,7 @@ import MainMenu from "./MainMenu";
 import LogIn from "./LogIn";
 import LogOut from "./LogOut";
 import Logs from "./Logs";
+import AccountLogIn from "./AccountLogIn";
 
 class App extends Component {
   constructor(props) {
@@ -15,9 +16,10 @@ class App extends Component {
   render() {
     return (
       <div className="container h-100">
+
         <Router>
           <Fragment>
-            <Route exact path="/" component={MainMenu} />
+            <Route exact path="/" component={AccountLogIn} />
             <Route path="/in" component={LogIn} />
             <Route path="/out" component={LogOut} />
             <Route path="/logs" component={Logs} />

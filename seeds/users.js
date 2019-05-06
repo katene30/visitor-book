@@ -5,7 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('users').insert([
-        {id: 1, username: 'test2', hash: '$argon2id$v=19$m=8,t=2,p=1$aXqU5TJm7JcS13bxQ93TgA$wO1oA3ewMUCqZzpfgPDb3HPEWN8r3OS7ORUA5SFmrfo'},
+        {id: 1, username: 'admin', hash: '$2b$12$43OzF3u6BqgtcSiV/w9aLeufQ3Zg4eRuSGZ25h9b2hH7MUjZdh392'},
       ]);
     });
 };

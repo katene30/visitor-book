@@ -1,19 +1,40 @@
-const connection = require('./connection')
-const {generateHash} = require('../auth/hash')
+const {generatePasswordHash} = require('../auth/hash')
 
+const connection = require('./connection')
+
+function createUser (user, testDb) {
+  const db = testDb || connection
+
+  return generatePasswordHash(user.hash)
+    .then(hash => {
+      return db('users').insert({username:user.username,hash})
+    })
+}
+
+function userExists (username, testDb) {
+  const db = testDb || connection
+
+  return db('users')
+    .where('username', username)
+    .then(users => users.length > 0)
+}
+
+function getUserByUsername (username, testDb) {
+  const db = testDb || connection
+
+  return db('users')
+    .where('username', username)
+    .first()
+}
+
+function getAllUsers(testDb) {
+  const db = testDb || connection
+  return db('users')
+}
 
 module.exports = {
   createUser,
-  getUser
-}
-
-function createUser ({username, password}, db = connection) {
-  return generateHash(password)
-  .then(hash => {
-    return db('users').insert({username, hash})
-  })
-}
-
-function getUser(id, db = connection){
-  return db('users').where('id',id).select()
+  userExists,
+  getUserByUsername,
+  getAllUsers
 }
