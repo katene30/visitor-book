@@ -6,20 +6,7 @@ const router = express.Router()
 
 // GET /api/v1/logs returns all logs
 
-// router.get('/logs', (req,res) => {
-//     db.getLogs()
-//     .then(logs => {
-//         res.json(logs)
-//     })
-//     .catch(err => {
-//         console.log(err)
-//         res.status(500).json({error: 'Something went wrong'})
-//     })
-// })
-
-router.get('/logs', verifyJwt({secret: process.env.JWT_SECRET}), logs)
-
-function logs (req,res){
+router.get('/logs', (req,res) => {
     db.getLogs()
     .then(logs => {
         res.json(logs)
@@ -28,7 +15,21 @@ function logs (req,res){
         console.log(err)
         res.status(500).json({error: 'Something went wrong'})
     })
-}
+})
+
+// router.get('/logs', isAuthenticated(), logs)
+
+// function logs (req,res){
+//     db.getLogs()
+//     .then(logs => {
+//         res.json(logs)
+//     })
+//     .catch(err => {
+//         console.log(err)
+//         res.status(500).json({error: 'Something went wrong'})
+//     })
+// }
+
 
 // POST /api/v1/log Adds log to db
 router.post('/log', (req,res) => {

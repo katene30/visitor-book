@@ -1,6 +1,7 @@
 import React, { Component,Fragment } from "react";
 import { connect } from "react-redux";
 import { HashRouter as Router, Route } from "react-router-dom";
+
 import MainMenu from "./MainMenu";
 import LogIn from "./LogIn";
 import LogOut from "./LogOut";
@@ -19,10 +20,16 @@ class App extends Component {
 
         <Router>
           <Fragment>
-            <Route exact path="/" component={AccountLogIn} />
-            <Route path="/in" component={LogIn} />
-            <Route path="/out" component={LogOut} />
-            <Route path="/logs" component={Logs} />
+            {this.props.isAuthenticated ? 
+              <Fragment>
+                <Route exact path="/" component={MainMenu} />
+                <Route path="/in" component={LogIn} />
+                <Route path="/out" component={LogOut} />
+                <Route path="/logs" component={Logs} />
+              </Fragment>
+              :
+              <Route path="/" component={AccountLogIn} />
+          }
           </Fragment>
         </Router>
       </div>
@@ -32,6 +39,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
+    isAuthenticated: state.auth.isAuthenticated,
   };
 }
 export default connect(mapStateToProps)(App);

@@ -7,7 +7,7 @@ export function isAuthenticated () {
 
   if (token) {
     const payload = decode(token)
-    const expiry = payload.exp
+    const expiry = 0
 
     if (expiry < new Date().getTime() / 1000) {
       removeUser()

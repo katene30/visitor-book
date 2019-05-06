@@ -10,7 +10,6 @@ class Logs extends Component {
 
   componentDidMount(){
     this.props.dispatch(getLogs())
-
   }
 
   render() {
@@ -45,7 +44,7 @@ class Logs extends Component {
 
 function mapStateToProps(state){
   return {
-      logs: state.logs
+      logs: state.logs,
   }
 }
 
