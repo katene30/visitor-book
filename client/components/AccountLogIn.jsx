@@ -31,18 +31,18 @@ class AccountLogIn extends Component {
     const {auth} = this.props
     return (
       <Fragment>
-        <form className="form box" onSubmit={this.submit}>
-          <h1 className="title is-2">Login</h1>
-          <hr />
-          {auth.errorMessage && <span className="has-text-danger is-large">{auth.errorMessage}</span>}
-          <label className="label is-large has-text-centered">Username
-            <input required className="input has-text-centered is-large is-fullwidth" placeholder="User Name" type="text" name="username" onChange={this.updateDetails}/>
-          </label>
-          <label className="label is-large has-text-centered">Password
-            <input required className="input has-text-centered is-large is-fullwidth" placeholder="password" type="password" name="hash" onChange={this.updateDetails}/>
-          </label>
-          <input className="button is-large is-fullwidth is-success" value='Login' type="submit" />
-        </form>
+        <div className="vertical-center">
+            {auth.errorMessage && <span className="m-5 alert alert-danger">{auth.errorMessage}</span>}
+          <form className="form-signin rounded bg-light p-3" onSubmit={this.submit}>
+            <h1 className="h3 mb-3 font-weight-normal text-center">Log In</h1>
+            <hr />
+            <label htmlFor="inputEmail" className="sr-only">Username</label>
+              <input required className="form-control" placeholder="Username" type="text" name="username" onChange={this.updateDetails}/>
+            <label htmlFor="inputPassword" className="sr-only">Password</label>
+              <input required className="form-control" placeholder="Password" type="password" name="hash" onChange={this.updateDetails}/>
+            <input className="btn btn-lg btn-primary btn-block" value='Login' type="submit" />
+          </form>
+        </div>
 
         <div className="row fixed-bottom bg-dark align-items-center">
           <Link to='/' className="btn btn-primary btn-lg my-2 ml-4">Home</Link>
