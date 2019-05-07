@@ -18,6 +18,11 @@ class Logs extends Component {
   render() {
     return (
       <Fragment>
+        {!this.props.isAuthenticated && 
+          <div class="m-5 alert alert-danger" role="alert">
+              You are required to log in.
+          </div>
+        }
           <table className="table-striped table table-fixed">
           <Thead/>
                 <tbody>
@@ -48,6 +53,7 @@ class Logs extends Component {
 function mapStateToProps(state){
   return {
       logs: state.logs,
+      isAuthenticated: state.auth.isAuthenticated
   }
 }
 
