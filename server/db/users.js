@@ -2,15 +2,6 @@ const {generatePasswordHash} = require('../auth/hash')
 
 const connection = require('./connection')
 
-function createUser (user, testDb) {
-  const db = testDb || connection
-
-  return generatePasswordHash(user.hash)
-    .then(hash => {
-      return db('users').insert({username:user.username,hash})
-    })
-}
-
 function userExists (username, testDb) {
   const db = testDb || connection
 
@@ -33,7 +24,6 @@ function getAllUsers(testDb) {
 }
 
 module.exports = {
-  createUser,
   userExists,
   getUserByUsername,
   getAllUsers

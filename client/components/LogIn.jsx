@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import {connect} from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import { getLogs,signOut } from '../actions/logs';
 import { addLog } from '../actions/logs';
 import { isAuthenticated } from '../utils/auth';
-const {DateTime} = require('luxon')
 
 
 class Logs extends Component {

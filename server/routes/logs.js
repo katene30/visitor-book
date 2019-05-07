@@ -17,20 +17,6 @@ router.get('/logs', (req,res) => {
     })
 })
 
-// router.get('/logs', isAuthenticated(), logs)
-
-// function logs (req,res){
-//     db.getLogs()
-//     .then(logs => {
-//         res.json(logs)
-//     })
-//     .catch(err => {
-//         console.log(err)
-//         res.status(500).json({error: 'Something went wrong'})
-//     })
-// }
-
-
 // POST /api/v1/log Adds log to db
 router.post('/log', (req,res) => {
     

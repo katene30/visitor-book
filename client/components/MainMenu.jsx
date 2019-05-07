@@ -20,6 +20,11 @@ class MainMenu extends Component {
     return (
       <Fragment>
           <div className="jumbotron mt-5 pt-5 pb-5">
+          {this.props.isAuthenticated &&
+            <div className="mt-n4 d-flex justify-content-between">
+              <p className="lead">Admin, is logged in</p>
+            </div>
+          }
             <img src="/images/logo.png" className="mx-auto d-block" alt="logo"/>
             <h1 className="display-4 text-center">Nau mai, Haere mai</h1>
             <p className="lead text-center">We are your Iwi hauora provider</p>
@@ -46,4 +51,10 @@ class MainMenu extends Component {
   }
 }
 
-export default connect()(MainMenu)
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  }
+}
+
+export default connect(mapStateToProps)(MainMenu)
