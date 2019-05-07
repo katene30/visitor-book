@@ -1,7 +1,21 @@
 import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom'
+import {logoutUser} from '../actions/logout'
+import { connect } from 'react-redux';
 
-export default class MainMenu extends Component {
+class MainMenu extends Component {
+
+  constructor(props){
+    super(props)
+
+    this.state={}
+    this.logOut = this.logOut.bind(this)
+  }
+
+  logOut(){
+    this.props.dispatch(logoutUser())
+  }
+
   render() {
     return (
       <Fragment>
@@ -18,7 +32,11 @@ export default class MainMenu extends Component {
                     <Link to='/out' className="btn btn-primary btn-lg p-3">Sign Out</Link>
                 </div>
             </div>
-            <div className="d-flex justify-content-end">
+            <div className="mt-5 d-flex justify-content-between">
+            <div class="btn-group" role="group">
+              <Link to='/login' class="btn btn-secondary">Log In</Link>
+              <button type="button" class="btn btn-secondary" onClick={() => this.logOut()}>Log Out</button>
+            </div>
               <Link to='/logs' className="btn btn-link">Logs</Link>
             </div>
         </div>
@@ -27,3 +45,5 @@ export default class MainMenu extends Component {
     )
   }
 }
+
+export default connect()(MainMenu)

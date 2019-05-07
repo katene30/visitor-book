@@ -52,6 +52,11 @@ class Logs extends Component {
         }
     return (
       <Fragment>
+        {!this.props.isAuthenticated && 
+        <div class="m-5 alert alert-danger" role="alert">
+            You are required to log in.
+        </div>
+        }
         {this.state.submit ? 
         <Fragment>
             <div className="jumbotron mt-5">
@@ -95,7 +100,8 @@ class Logs extends Component {
 
 function mapStateToProps(state){
   return {
-      logs: state.logs
+      logs: state.logs,
+      isAuthenticated: state.auth.isAuthenticated
   }
 }
 

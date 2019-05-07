@@ -26,6 +26,7 @@ class App extends Component {
                 <Route path="/in" component={LogIn} />
                 <Route path="/out" component={LogOut} />
                 <Route path="/logs" component={Logs} />
+                <Route path="/login" component={AccountLogIn} />
               </Fragment>
               :
               <Route path="/" component={AccountLogIn} />

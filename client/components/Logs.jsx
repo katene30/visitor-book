@@ -3,13 +3,16 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getLogs } from '../actions/logs'
 import Thead from './Thead'
+import { isAuthenticated } from '../utils/auth';
 const {DateTime} = require('luxon')
 
 
 class Logs extends Component {
 
   componentDidMount(){
-    this.props.dispatch(getLogs())
+    if(isAuthenticated()){
+      this.props.dispatch(getLogs())
+    }
   }
 
   render() {
