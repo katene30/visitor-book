@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getLogs,signOut } from '../actions/logs';
 import Thead from './Thead'
+import { isAuthenticated } from '../utils/auth';
 const {DateTime} = require('luxon')
 
 
@@ -21,7 +22,9 @@ class Logs extends Component {
     }
 
     componentDidMount(){
-        this.getLogs()
+        if(isAuthenticated()){
+            this.getLogs()
+        }
     }
 
     getLogs(){
@@ -43,11 +46,13 @@ class Logs extends Component {
     }
 
     confirm(log){
-        this.props.dispatch(signOut(log))
-        .then(() => {
-            this.getLogs()
-            this.setState({confirm:false})
-        })
+        if(isAuthenticated()){
+            this.props.dispatch(signOut(log))
+            .then(() => {
+                this.getLogs()
+                this.setState({confirm:false})
+            })
+        }
     }
 
   render() {

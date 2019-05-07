@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
 import { getLogs,signOut } from '../actions/logs';
 import { addLog } from '../actions/logs';
+import { isAuthenticated } from '../utils/auth';
 const {DateTime} = require('luxon')
 
 
@@ -37,13 +38,15 @@ class Logs extends Component {
             reference: this.state.reference
         }
 
-        this.props.dispatch(addLog(log))
-        .then(() => {
-            this.setState({submit:true});
-            setTimeout(() => {
-                this.setState({navigate:true})
-            }, 5000);
-        })
+        if(isAuthenticated()){
+            this.props.dispatch(addLog(log))
+            .then(() => {
+                this.setState({submit:true});
+                setTimeout(() => {
+                    this.setState({navigate:true})
+                }, 5000);
+            })
+        }
     }
 
   render() {
