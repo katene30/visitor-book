@@ -34,8 +34,8 @@ class MainMenu extends Component {
             </div>
             <div className="mt-5 d-flex justify-content-between">
             <div class="btn-group" role="group">
-              <Link to='/login' class="btn btn-secondary">Log In</Link>
-              <button type="button" class="btn btn-secondary" onClick={() => this.logOut()}>Log Out</button>
+              <Link to='/login' className="btn btn-secondary">Log In</Link>
+              <button type="button" className="btn btn-secondary" onClick={() => this.logOut()}>Log Out</button>
             </div>
               <Link to='/logs' className="btn btn-link">Logs</Link>
             </div>
