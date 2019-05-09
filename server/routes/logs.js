@@ -17,6 +17,19 @@ router.get('/logs', (req,res) => {
     })
 })
 
+// GET /api/v1/logs/:owner returns logs based off location
+
+router.get('/logs/:owner', (req,res) => {
+    db.getLogsByOwner(req.params.owner)
+    .then(logs => {
+        res.json(logs)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).json({error: 'Something went wrong'})
+    })
+})
+
 // POST /api/v1/log Adds log to db
 router.post('/log', (req,res) => {
     

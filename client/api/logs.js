@@ -5,6 +5,11 @@ export function getLogs(){
     .then(res => res.body)
 }
 
+export function getLogsByOwner(owner){
+    return request.get(`/api/v1/logs/${owner}`)
+    .then(res => res.body)
+}
+
 export function signOut(id){
     return request.post(`api/v1/log/${id}`)
     .then(res => res.body)

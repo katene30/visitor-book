@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getLogs,signOut } from '../actions/logs';
+import { getLogsByOwner,signOut } from '../actions/logs';
 import Thead from './Thead'
 import { isAuthenticated } from '../utils/auth';
 const {DateTime} = require('luxon')
@@ -28,7 +28,7 @@ class Logs extends Component {
     }
 
     getLogs(){
-        this.props.dispatch(getLogs())
+        this.props.dispatch(getLogsByOwner(this.props.auth.user.username))
         .then(() => {
             const pendingLogs = this.props.logs.filter(log => {
                 return !log.time_out
@@ -109,7 +109,8 @@ class Logs extends Component {
 function mapStateToProps(state){
   return {
       logs: state.logs,
-      isAuthenticated: state.auth.isAuthenticated
+      isAuthenticated: state.auth.isAuthenticated,
+      auth: state.auth
   }
 }
 

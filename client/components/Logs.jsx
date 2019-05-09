@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getLogs } from '../actions/logs'
+import { getLogs, getLogsByOwner } from '../actions/logs'
 import Thead from './Thead'
 import { isAuthenticated } from '../utils/auth';
 const {DateTime} = require('luxon')
@@ -11,7 +11,7 @@ class Logs extends Component {
 
   componentDidMount(){
     if(isAuthenticated()){
-      this.props.dispatch(getLogs())
+      this.props.dispatch(getLogsByOwner(this.props.auth.user.username))
     }
   }
 
@@ -53,7 +53,8 @@ class Logs extends Component {
 function mapStateToProps(state){
   return {
       logs: state.logs,
-      isAuthenticated: state.auth.isAuthenticated
+      isAuthenticated: state.auth.isAuthenticated,
+      auth: state.auth
   }
 }
 
