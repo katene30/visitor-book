@@ -7,6 +7,7 @@ exports.up = function(knex, Promise) {
     table.string('reference')
     table.string('time_in')
     table.string('time_out')
+    table.string('owner')
   })
 };
 

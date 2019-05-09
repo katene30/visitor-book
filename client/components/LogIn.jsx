@@ -37,6 +37,7 @@ class Logs extends Component {
         let log = {
             name: this.state.name,
             reference: this.state.reference,
+            owner: this.props.auth.user.username
         }
 
         if(this.state.otherService.length > 0){
@@ -134,7 +135,8 @@ class Logs extends Component {
 function mapStateToProps(state){
   return {
       logs: state.logs,
-      isAuthenticated: state.auth.isAuthenticated
+      isAuthenticated: state.auth.isAuthenticated,
+      auth: state.auth
   }
 }
 

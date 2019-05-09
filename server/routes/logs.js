@@ -21,12 +21,12 @@ router.get('/logs', (req,res) => {
 router.post('/log', (req,res) => {
     
     let today = DateTime.local().toISO()
-
     const log = {
         service: req.body.service,
         name: req.body.name,
         reference: req.body.reference,
-        time_in: today
+        time_in: today,
+        owner: req.body.owner
     }
 
     db.createLog(log)
