@@ -14,7 +14,9 @@ class Logs extends Component {
             service: '',
             reference: '',
             submit: false,
-            navigate: false
+            navigate: false,
+            other: false,
+            otherService: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -25,15 +27,22 @@ class Logs extends Component {
 
     handleChange(event){
         this.setState({ [event.target.name]: event.target.value });
+        if(event.target.name == 'service' && event.target.value == 'other'){
+            this.setState({other:true})
+        }
     }
 
     onSubmit(event){
         event.preventDefault()
-        
         let log = {
             name: this.state.name,
-            service: this.state.service,
-            reference: this.state.reference
+            reference: this.state.reference,
+        }
+
+        if(this.state.otherService.length > 0){
+            log.service = this.state.otherService
+        } else {
+            log.service = this.state.service
         }
 
         if(isAuthenticated()){
@@ -70,24 +79,47 @@ class Logs extends Component {
         :
         <form className="m-5" onSubmit={this.onSubmit}>
             <div className="form-group">
-                <label htmlFor="formGroupExampleInput">Name</label>
-                <input type="text" name="name" className="form-control" id="formGroupExampleInput" onChange={this.handleChange} required/>
+                <label htmlFor="name">Name</label>
+                <input type="text" name="name" className="form-control form-control-lg" id="name" onChange={this.handleChange} required/>
             </div>
+
             <div className="form-group">
-                <label htmlFor="formGroupExampleInput2">Service</label>
-                <input type="text" name="service" className="form-control" id="formGroupExampleInput2" onChange={this.handleChange} required/>
-                <small id="passwordHelpBlock" className="form-text text-muted">
-                    E.g Family Start, Budgeting, Toki Rau...
+                <label htmlFor="service">Service</label>
+                <select name="service" onChange={this.handleChange} className="custom-select custom-select-lg" defaultValue={'DEFAULT'}>
+                    <option value="DEFAULT" disabled> -- select an option -- </option>
+                    <option value="AA">AA</option>
+                    <option value="Breakaway Holiday Programme">Breakaway Holiday Programme</option>
+                    <option value="Family Start">Family Start</option>
+                    <option value="Manawa Ora">Manawa Ora</option>
+                    <option value="Outreach">Outreach</option>
+                    <option value="Pou Hakinakina">Pou Hakinakina</option>
+                    <option value="Rheumatic Fever Prevention">Rheumatic Fever Prevention</option>
+                    <option value="Road Safety">Road Safety</option>
+                    <option value="Rongoa">Rongoa</option>
+                    <option value="Taake Ngakau">Taake Ngakau</option>
+                    <option value="Toki Rau - Smoking Cessation">Toki Rau - Smoking Cessation</option>
+                    <option value="Whanau Ora">Whanau Ora</option>
+                    <option value="other">Other</option>
+                </select>
+
+                {this.state.other && 
+                    <input type="text" name="otherService" className="form-control form-control-lg mt-3" id="otherService" onChange={this.handleChange} required/>
+                }
+
+
+                <small className="form-text text-muted">
+                        E.g Family Start, Budgeting, Toki Rau...
                 </small>
             </div>
+
             <div className="form-group">
-                <label htmlFor="formGroupExampleInput2">Reference</label>
-                <input type="text" name="reference" className="form-control" id="formGroupExampleInput2" placeholder="Who referred you?" onChange={this.handleChange} required/>
-                <small id="passwordHelpBlock" className="form-text text-muted">
+                <label htmlFor="reference">Reference</label>
+                <input type="text" name="reference" className="form-control form-control-lg" id="reference" placeholder="Who referred you?" onChange={this.handleChange} required/>
+                <small id="referenceHelpBlock" className="form-text text-muted">
                     E.g Self, Government agencies, Iwi providers...
                 </small>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary btn-lg">Submit</button>
         </form>
         }
         <div className="row fixed-bottom bg-dark align-items-center">
