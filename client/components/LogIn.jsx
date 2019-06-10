@@ -100,6 +100,7 @@ class Logs extends Component {
                     <option value="Breakaway Holiday Programme">Breakaway Holiday Programme</option>
                     <option value="Family Start">Family Start</option>
                     <option value="Flinchlock Release">Flinchlock Release</option>
+                    <option value="Fono">Fono</option>
                     <option value="Manawa Ora">Manawa Ora</option>
                     <option value="Outreach">Outreach</option>
                     <option value="Pou Hakinakina">Pou Hakinakina</option>
