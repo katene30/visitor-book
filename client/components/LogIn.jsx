@@ -16,7 +16,8 @@ class Logs extends Component {
             submit: false,
             navigate: false,
             other: false,
-            otherService: ''
+            otherService: '',
+            staff:false
         }
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -29,6 +30,9 @@ class Logs extends Component {
         this.setState({ [event.target.name]: event.target.value });
         if(event.target.name == 'service' && event.target.value == 'other'){
             this.setState({other:true})
+        }
+        if(event.target.name == 'service' && event.target.value == 'Staff'){
+            this.setState({staff:true})
         }
     }
 
@@ -44,6 +48,10 @@ class Logs extends Component {
             log.service = this.state.otherService
         } else {
             log.service = this.state.service
+        }
+        
+        if(this.state.staff){
+            log.reference = 'n/a'
         }
 
         if(isAuthenticated()){
@@ -97,6 +105,7 @@ class Logs extends Component {
                     <option value="Rheumatic Fever Prevention">Rheumatic Fever Prevention</option>
                     <option value="Road Safety">Road Safety</option>
                     <option value="Rongoa">Rongoa</option>
+                    <option value="Staff">Staff</option>
                     <option value="Taake Ngakau">Taake Ngakau</option>
                     <option value="Toki Rau - Smoking Cessation">Toki Rau - Smoking Cessation</option>
                     <option value="Whanau Ora">Whanau Ora</option>
@@ -112,7 +121,7 @@ class Logs extends Component {
                         E.g Family Start, Budgeting, Toki Rau...
                 </small>
             </div>
-
+            {!this.state.staff && 
             <div className="form-group">
                 <label htmlFor="reference">Reference</label>
                 <input type="text" name="reference" className="form-control form-control-lg" id="reference" placeholder="Who referred you?" onChange={this.handleChange} required/>
@@ -120,6 +129,8 @@ class Logs extends Component {
                     E.g Self, Government agencies, Iwi providers...
                 </small>
             </div>
+            }
+
             <button type="submit" className="btn btn-primary btn-lg">Submit</button>
         </form>
         }
