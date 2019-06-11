@@ -107,6 +107,7 @@ class Logs extends Component {
                     <option value="Rheumatic Fever Prevention">Rheumatic Fever Prevention</option>
                     <option value="Road Safety">Road Safety</option>
                     <option value="Rongoa">Rongoa</option>
+                    <option value="Sanson and Associates">Sanson and Associates</option>
                     <option value="Staff">Staff</option>
                     <option value="Taake Ngakau">Taake Ngakau</option>
                     <option value="Toki Rau - Smoking Cessation">Toki Rau - Smoking Cessation</option>
