@@ -20,3 +20,9 @@ export function addLog(log){
     .send(log)
     .then(res => res.body)
 }
+
+export function timeOut(logs){
+    return request.post('api/v1/time-out')
+    .send(logs)
+    .then(res => res.body)
+}
