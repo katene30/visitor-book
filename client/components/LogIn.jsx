@@ -17,7 +17,9 @@ class Logs extends Component {
             navigate: false,
             other: false,
             otherService: '',
-            staff:false
+            staff:false,
+            boardMember:false,
+            exception:false
         }
         this.handleChange = this.handleChange.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
@@ -32,8 +34,13 @@ class Logs extends Component {
             this.setState({other:true})
         }
         if(event.target.name == 'service' && event.target.value == 'Staff'){
-            this.setState({staff:true})
+            this.setState({exception:true})
+        }else if(event.target.name == 'service' && event.target.value == 'Board Member'){
+            this.setState({exception:true})
+        } else{
+            this.setState({exception:false})
         }
+
     }
 
     onSubmit(event){
@@ -50,7 +57,7 @@ class Logs extends Component {
             log.service = this.state.service
         }
         
-        if(this.state.staff){
+        if(this.state.exception){
             log.reference = 'n/a'
         }
 
@@ -97,6 +104,7 @@ class Logs extends Component {
                 <select name="service" onChange={this.handleChange} className="custom-select custom-select-lg" defaultValue={'DEFAULT'}>
                     <option value="DEFAULT" disabled> -- select an option -- </option>
                     <option value="AA">AA</option>
+                    <option value="Board Member">Board Member</option>
                     <option value="Breakaway Holiday Programme">Breakaway Holiday Programme</option>
                     <option value="Family Start">Family Start</option>
                     <option value="Flinchlock Release">Flinchlock Release</option>
@@ -124,7 +132,7 @@ class Logs extends Component {
                         E.g Family Start, Budgeting, Toki Rau...
                 </small>
             </div>
-            {!this.state.staff && 
+            {!this.state.exception && 
             <div className="form-group">
                 <label htmlFor="reference">Reference</label>
                 <input type="text" name="reference" className="form-control form-control-lg" id="reference" placeholder="Who referred you?" onChange={this.handleChange} required/>
