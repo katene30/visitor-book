@@ -39,7 +39,7 @@ function createToken (user, secret) {
     expiresIn:0
   }
 
-  return jwt.sign(payload, secret, options)
+  return jwt.sign(payload, secret)
 }
 
 function decode (req, res, next) {
