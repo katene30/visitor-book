@@ -37,6 +37,8 @@ class Logs extends Component {
             this.setState({exception:true})
         }else if(event.target.name == 'service' && event.target.value == 'Board Member'){
             this.setState({exception:true})
+        }else if(event.target.name == 'service' && event.target.value == 'Whanau'){
+            this.setState({exception:true})
         } else{
             this.setState({exception:false})
         }
@@ -119,6 +121,7 @@ class Logs extends Component {
                     <option value="Staff">Staff</option>
                     <option value="Taake Ngakau">Taake Ngakau</option>
                     <option value="Toki Rau - Smoking Cessation">Toki Rau - Smoking Cessation</option>
+                    <option value="Whanau">Whanau</option>
                     <option value="Whanau Ora">Whanau Ora</option>
                     <option value="other">Other</option>
                 </select>
