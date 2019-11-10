@@ -127,7 +127,7 @@ class Logs extends Component {
                 </select>
 
                 {this.state.other && 
-                    <input type="text" name="otherService" className="form-control form-control-lg mt-3" id="otherService" onChange={this.handleChange} required/>
+                    <input type="text" name="otherService" className="form-control form-control-lg mt-3" id="otherService" onChange={this.handleChange} placeholder="Please specify" required/>
                 }
 
 
