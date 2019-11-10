@@ -13,12 +13,13 @@ class Logs extends Component {
 
         this.state={
             pendingLogs : [],
-            log: {},
+            log: [],
             confirm: false
         }
         this.getLogs = this.getLogs.bind(this)
         this.signOut = this.signOut.bind(this)
         this.confirm = this.confirm.bind(this)
+        this.inArray = this.inArray.bind(this)
     }
 
     componentDidMount(){
@@ -37,21 +38,40 @@ class Logs extends Component {
         })
     }
 
-    signOut(log){
-        if(this.state.log.id == log.id){
-            this.setState({confirm:false,log:{}})
-        }else{
-            this.setState({confirm:true,log})
+    inArray(log,logArr=this.state.log){
+        for(i in logArr){
+            if (logArr[i].id === log.id){
+                log.active = false 
+                logArr.splice(i,1)
+                return true;
+            }
         }
+        return false;
+    }
+
+    signOut(log){
+        let logArr = this.state.log
+        if(!this.inArray(log,logArr)){
+            log.active = true
+            logArr.push(log)
+            this.setState({log:logArr})
+        }
+
+        if(this.state.log.length > 0){
+            this.setState({confirm:true})
+        } else{
+            this.setState({confirm:false})
+        }
+
     }
 
     confirm(log){
         if(isAuthenticated()){
-            this.props.dispatch(signOut(log))
-            .then(() => {
+            for(i in log){
+                this.props.dispatch(signOut(log[i]))
+            }
                 this.getLogs()
                 this.setState({confirm:false})
-            })
         }
     }
 
@@ -67,12 +87,8 @@ class Logs extends Component {
           <Thead />
           <tbody>
             {this.state.pendingLogs.map((log,i) => {
-            let active = false
-            if(this.state.log.id == log.id){
-                active = true
-            }
             return(
-                <tr key={i} className={active ? 'table-success' : undefined} onClick={() => this.signOut(log)}>
+                <tr key={i} className={log.active ? 'table-success' : undefined} onClick={() => this.signOut(log)}>
                   <td>{log.id}</td>
                   <td>{log.time_in ? DateTime.fromISO(log.time_in,{locale: "en-GB"}).toLocaleString() : 'invalid'}</td>
                   <td>{log.name}</td>
