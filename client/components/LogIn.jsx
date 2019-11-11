@@ -30,21 +30,23 @@ class Logs extends Component {
 
     handleChange(event){
         this.setState({ [event.target.name]: event.target.value });
-        switch(event.target.value){
-            case 'other':
-            this.setState({other:true})
-            break
-            case 'Staff':
-            this.setState({exception:true})
-            break
-            case 'Board Member':
-            this.setState({exception:true})
-            break
-            case 'Whanau':
-            this.setState({exception:true})
-            break
-            default:
-            this.setState({exception:false})                        
+        if(event.target.name == 'service'){
+            switch(event.target.value){
+                case 'other':
+                this.setState({other:true})
+                break
+                case 'Staff':
+                this.setState({exception:true})
+                break
+                case 'Board Member':
+                this.setState({exception:true})
+                break
+                case 'Whanau':
+                this.setState({exception:true})
+                break
+                default:
+                this.setState({exception:false})                        
+            }
         }
 
     }
